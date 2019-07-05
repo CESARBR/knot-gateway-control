@@ -16,6 +16,8 @@ import dbus.mainloop.glib
 import gobject as GObject
 import daemon
 
+from control import Control
+
 mainloop = None
 
 logging.basicConfig(format='[%(levelname)s] %(funcName)s: %(message)s\n',
@@ -52,6 +54,9 @@ def main():
 
     with context:
         dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+
+        control = Control()
+        control.start()
 
         mainloop = GObject.MainLoop()
 
