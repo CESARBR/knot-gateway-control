@@ -32,4 +32,8 @@ setup(
         "Topic :: Utilities",
         "License :: OSI Approved :: BSD 3-Clause License",
     ],
+    package_data={
+       # If control package contains *.json files, include them:
+       'control': ['*.json'],
+   },
 )
