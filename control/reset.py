@@ -11,6 +11,7 @@ import json
 from pkg_resources import resource_string
 from mongo import MongoConn
 from rabbitmq import RabbitMQConn
+from connman import remove_wifi_services
 
 RESET_SETTINGS_FILE = 'resetSettings.json'
 
@@ -58,6 +59,9 @@ class Reset():
         self._mongo_conn.connect()
         self._mongo_conn.drop_all_db()
         self._mongo_conn.close()
+
+        # clear ConnMan services
+        remove_wifi_services()
 
         # reboot
         os.system('reboot')
